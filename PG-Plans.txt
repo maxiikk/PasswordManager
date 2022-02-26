@@ -1,0 +1,12 @@
+We have plans to add/make:
+	encrypted password storage (with decryption of course)
+	weak password determiner
+		typical determiner 
+		pattern & word-based weak password determiner
+	manual selection of special symbols (using user input)
+	GUI
+	
+	
+	
+Note: Some may not be done due to issues regarding borrowing code from others, which
+we would like to avoid doing.
