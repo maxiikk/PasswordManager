@@ -1,8 +1,6 @@
 We have plans to add/make:
 	encrypted password storage (with decryption of course)
-	weak password determiner
-		typical determiner 
-		pattern & word-based weak password determiner
+	password strength analyzer with points
 	manual selection of special symbols (using user input)
 	GUI
 	
