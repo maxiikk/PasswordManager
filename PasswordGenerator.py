@@ -1,6 +1,4 @@
 import random
-
-
 def generate(o, symbsbase):
     password = []
     for i in range (0, o):
@@ -9,7 +7,6 @@ def generate(o, symbsbase):
     for i in range (0, len(password)):
         print(password[i], end ='')
     print("\n\n")
-    
 
 def ask():
     o = 3
@@ -68,3 +65,25 @@ while aend.lower() == "no" and aend.lower() != "yes":
     aend = "ooo"
     while aend.lower() != "no" and aend.lower() != "yes":
         aend = str(input("Do you want to stop the process of password generation?\nyes/no\n"))
+
+
+
+
+
+
+"""
+--------------------------------------------------
+Borrowed Code from: 
+
+None
+
+--------------------------------------------------
+
+In development by inf2021221 & inf2021198 for our university project at IONIO 
+University of Informatics
+
+Link to the Github project:
+    https://github.com/maxiikk/PasswordGenerator
+
+Last edit made at 26/2/2022 20:50
+"""
