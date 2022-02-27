@@ -8,7 +8,7 @@ and decrypted in the <Encrypted Password Storage.txt>.
 
 
 ------------------
-By:				 |
-	inf2021221   |
-	inf2021198   |
+By:				 
+	inf2021221   
+	inf2021198   
 ------------------
