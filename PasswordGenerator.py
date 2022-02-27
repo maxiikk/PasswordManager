@@ -1,12 +1,35 @@
 import random
+import os.path
+
 def generate(o, symbsbase):
     password = []
+    ans = "ooo"
+    ans2 = "ooo"
+    passname = "/"
+    while ans != "no" and ans != "yes":
+        ans = str(input("Do you want to save your password to a text file? The password will not be ecnrypted so be careful where you move it/backup it.\nyes/no\n"))
+    if ans == "yes":
+        if os.path.isfile("Decrypted Password Storage.txt"):
+            savepass = open("Decrypted Password Storage.txt", "a")
+        else:
+            savepass = open("Decrypted Password Storage.txt", "w+")
+        while ans2 != "no" and ans2 != "yes":
+            ans2 = str(input("Do you want to give the password a name?\nyes/no\n"))
+        if ans2 == "yes":
+            passname = str(input("How do you want to name your password?\n"))
+            savepass.write ("\nName: " + passname + "\nPassword: ")
+    print("\n-------------------------------------\nYour Password is: ", end= '') 
     for i in range (0, o):
         a = random.randint(0, len(symbsbase)-1)
-        password.append(symbsbase[a])
+        password.append(symbsbase[a]) 
     for i in range (0, len(password)):
         print(password[i], end ='')
-    print("\n\n")
+        if ans == "yes":
+            savepass.write(password[i])
+    print ("\n-------------------------------------\n\n")
+    if ans == "yes":
+        savepass.write("\n")
+        savepass.close()
 
 def ask():
     o = 3
@@ -85,5 +108,5 @@ University of Informatics
 Link to the Github project:
     https://github.com/maxiikk/PasswordGenerator
 
-Last edit made at 26/2/2022 20:50
+Last edit made at 27/2/2022 18:14
 """
