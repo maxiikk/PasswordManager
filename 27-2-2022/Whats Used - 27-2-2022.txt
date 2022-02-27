@@ -1,0 +1,16 @@
+
+
+	Whats Used To Make The Build
+			27-2-2022
+-----------------------------------------
+Programs used to edit the code:
+	Notepad++
+	Python IDLE 3.9.5
+Programs used to compile the code:
+	Python 3.9.5
+
+-----------
+inf2021221|
+inf2021198|
+-----------------------------------------
+		Date: 27-2-2022
