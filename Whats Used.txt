@@ -1,0 +1,20 @@
+
+
+	Whats Used To Make This Project
+-----------------------------------------
+Programs used to edit the code:
+	Notepad++
+	Python IDLE 3.9.5
+Programs used to compile the code:
+	Python 3.9.5
+
+
+Note: The list will change as soon as we 
+	  start to use other programs to keep
+	  the development reports up to date.
+
+-----------
+inf2021221|
+inf2021198|
+-----------------------------------------
+		Date: 27-2-2022
