@@ -6,13 +6,28 @@ master = Tk()
 master.title("Password Generator")
 lol = StringVar()
 decpass = StringVar()
-key = Fernet.generate_key()
+if os.path.isfile("deckey.txt"):
+    key = open("deckey.txt", "rb").read()
+else:
+    key = Fernet.generate_key()
+    key2 = str(key)
+    l = ""
+    o = 0
+    for b in key2:
+        if o != 0 and o != 1 and o != (len(key2)-1):
+            l += b
+        o += 1
+    savepass = open("deckey.txt", "a")
+    savepass.write(str(l))
+    savepass.close()
+
 fernet = Fernet(key)
 encpass = StringVar()
 l2 = Label(master, text = "Your Password is: ").grid(row = 4, column = 0)
 l3 = Label(master, text = "Your password in encrypted format: ").grid(row = 5, column = 0)
 l5 = Label(master, text = "Decrypted: ").grid(row = 7, column = 0)
 l6 = Label(master, textvariable = decpass).grid(row = 7, column = 1)
+l7 = Label(master, text = "IMPORTANT!!!!\nAfter launching the program there will be generated a key-file \nthat will be used to decrypt the passwords from the encrypted password storage!!!\nBackup these two files to decrypt the passwords in the future!!!\nFile names:\ndeckey.txt\n&\nEncrypted Password Storage.txt\n\nThe key-file is automatically used by the program\nafter the program is launched from the same folder!").grid(row = 8, column = 0)
 l4 = Label(master, textvariable = encpass).grid(row = 5, column = 1)
 e3 = Entry(master)
 e3.grid(row = 6, column = 0)
@@ -140,5 +155,5 @@ University of Informatics
 Link to the Github project:
     https://github.com/maxiikk/PasswordGenerator
 
-Last edit made at 8/3/2022 23:48
+Last edit made at 9/3/2022 00:34
 """

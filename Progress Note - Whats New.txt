@@ -1,0 +1,15 @@
+In this build (Date 9-3-2022) we implemented the key-file (deckey.txt) based
+decryption of the encrypted passwords from the <Encrypted Password Storage.txt>!
+Please keep these two files (deckey.txt & Encrypted Password Storage.txt) in 
+a safe place if you are planning to use this python program to keep your
+passwords safe!
+The key-file is automatically used for decryption once the program is launched
+from the same folder as <deckey.txt>.
+Text copying support is planned for the next build.
+
+
+------------------
+By:				 
+	inf2021221   
+	inf2021198   
+------------------
