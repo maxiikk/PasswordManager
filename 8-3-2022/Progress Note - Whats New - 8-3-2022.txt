@@ -1,0 +1,15 @@
+In this build (Date 8-3-2022) we made a GUI and added the main
+features even though the decryption does not work with a master
+password yet, we plan to use a key-file instead of a master
+password due to a malfunction of the Pycrypto installer that had
+all the "encrypt with a password" functions, but we will do that
+just to not be bothered by the encryption method and continue on
+implementing other features and get back to the Pycrypto once its
+fixed.
+
+
+------------------
+By:				 
+	inf2021221   
+	inf2021198   
+------------------
