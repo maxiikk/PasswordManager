@@ -1,0 +1,15 @@
+In this build (Date 17-3-2022) we added the option of saving the
+generated password to a text file which supports the addition of
+multiple passwords with the method of appending, each password
+can have it's own desired name if the user chooses to provide
+one. Also, soon, we will add the encryption feature to our
+generator and the option to save the password both encrypted
+and decrypted in the <Encrypted Password Storage.txt>.
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
