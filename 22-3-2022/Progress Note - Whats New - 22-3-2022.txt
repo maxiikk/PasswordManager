@@ -1,4 +1,4 @@
-In this build (Date 22-3-2022) we made the UI mode user friendly and added
+In this build (Date 22-3-2022) we made the UI more user friendly and added
 a few more features like separate key and passwords view windows for a
 more comfortable use.
 
