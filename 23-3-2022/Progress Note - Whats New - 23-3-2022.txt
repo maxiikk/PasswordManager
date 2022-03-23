@@ -1,0 +1,13 @@
+In this build (Date 23-3-2022) we improved the look of the added UI and
+made the Saved Passwords window show the passwords in decrypted format
+without making any additional files that would expose the passwords.
+We also added warnings to avoid any misunderstanding and help the
+user understand how the program works and what the user should do.
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
