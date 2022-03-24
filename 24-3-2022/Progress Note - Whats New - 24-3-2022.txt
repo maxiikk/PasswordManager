@@ -1,0 +1,13 @@
+In this build (Date 24-3-2022) we added the option to switch between
+languages so the user is more comfortable while using the program
+in the language he feels comfortable with the most.
+We also fixed a few bugs that could cause malfunction of the
+password storage.
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
