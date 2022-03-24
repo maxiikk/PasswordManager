@@ -107,7 +107,7 @@ def openimp():
     elif curlang.get() == 1:
         impage.title("Важная Записка")
         l10 = Label (impage, text = "ВАЖНО!!!!", font=("Courier", 18, "bold"), bg='#bdbdbd').grid(row = 0)
-        l10 = Label (impage, text = "\nПосле запуска программы в папке появится файл-ключ\nкоторый нужен для расшифровки паролей из сохранненых паролей!!!\nСохраните эти два файла чтобы расшифровать пароли в будущем!!!\nНазвания Файлов:\ndeckey.txt\n&\nEncrypted Password Storage.txt\n\nФайл-ключ будет автоматически создан\nв папке из которой была запущена программы!", font=("Courier", 12, "bold"), bg='#bdbdbd').grid(row = 1)
+        l10 = Label (impage, text = "\nПосле запуска программы в папке появится файл-ключ\nкоторый нужен для расшифровки паролей из сохранненых паролей!!!\nСохраните эти два файла чтобы расшифровать пароли в будущем!!!\nНазвания Файлов:\ndeckey.txt\n&\nEncrypted Password Storage.txt\n\nФайл-ключ будет автоматически использован\nиз папки из которой была запущена программа!", font=("Courier", 12, "bold"), bg='#bdbdbd').grid(row = 1)
     elif curlang.get() == 2:
         impage.title("Σημαντική Παρατήρηση")
         l10 = Label (impage, text = "ΣΗΜΑΝΤΙΚΟ!!!!", font=("Courier", 18, "bold"), bg='#bdbdbd').grid(row = 0)
