@@ -1,0 +1,14 @@
+In this build (Date 25-3-2022) we removed unnecessary parts of code,
+made some bug fixes, simplified some calculations, made the menu
+translatable to the 3 languages we provide and added an approximate 
+password strength calculator which is located in front of the 
+generated password entry box.
+
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
