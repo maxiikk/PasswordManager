@@ -1,0 +1,14 @@
+In this build (Date 29-3-2022) we changed the entry widgets
+to text widgets because of the scrolling ability of text
+widgets. Also, we added a refresh button to the password
+storage viewer for refreshing the showed decrypted password
+storage for a more comfortable use.
+
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
