@@ -1,0 +1,18 @@
+In this build (Date 5-4-2022) we finally added password-based
+encryption & decryption! Since the popular modules would not
+install on our system for some reason, we didnt stop searching
+for alternatives, and here we are, we found an encryption
+module that was easy to install and setup! Now, to set up
+a password for the encryption & decryption of the passwords
+you should enter it every time you launch the program so the
+program will automatically decrypt the saved passwords and
+encrypt the new passwords!
+
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
