@@ -12,9 +12,8 @@ Programs used to compile the code:
 
 Needed modules for python:
 1.wheel
-2.Cryptography
-3.pyperclip
-4.AES-Encryptor
+2.pyperclip
+3.AES-Encryptor
 
 -----------
 inf2021221|
