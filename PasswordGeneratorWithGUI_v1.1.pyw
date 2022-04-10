@@ -351,7 +351,7 @@ importantlabel = StringVar()
 viewsavedlabel = StringVar()
 hidepassvar = IntVar()
 passstrength = StringVar()
-recentrating = StringVar()
+recentrating = IntVar()
 recentrating.set(0)
 def setenglish():
     curlang.set(0)
@@ -381,7 +381,7 @@ def setenglish():
     savedpasses.entryconfigure(0, label = "Saved Passwords")
     passwrd.entryconfigure(0, label = "Change Password")
     aboutuscaslabel.set("About us")
-    passstrength.set("Strength: \n" + recentrating.get())
+    passstrength.set("Strength: \n" + str(int(recentrating.get())))
     langlabel.set("Language")
     savedpasslabel.set("Saved Passwords")
     aboutuslabel.set("About us")
@@ -413,7 +413,7 @@ def setrussian():
     uppercheck.set("Большие Буквы")
     lowercheck.set("Маленькие Буквы")
     encryptedpasslabel.set("Зашифрованно: ")
-    passstrength.set("Прочность: \n" + recentrating.get())
+    passstrength.set("Прочность: \n" + str(int(recentrating.get())))
     decryptedpasslabel.set("Расшифрованно: ")
     yourencpasswordlabel.set("Пароль в зашифрованном виде:")
     aboutuscaslabel.set("О нас")
@@ -431,7 +431,7 @@ def setgreek():
     passwordnamelabel.set('Όνομα Κωδικού')
     passwordlengthlabel.set('Μέγεθος')
     decryptbutton.set("Αποκρυπτογράφηση")
-    passstrength.set("Αντοχή: \n" + recentrating.get())
+    passstrength.set("Αντοχή: \n" + str(int(recentrating.get())))
     generatebutton.set("[Δημιουργία]")
     copybutton.set("Αντιγραφή")
     savebutton.set("Αποθήκευση")
@@ -596,7 +596,7 @@ def ratepass(passtorate):
     rating += len(passtorate)
     if len(passtorate) == 1 or len(passtorate) == 2 or len(passtorate) == 3:
         rating = len(passtorate) * len(passtorate)
-    recentrating.set(str(rating))
+    recentrating.set(int(rating))
     return int(rating)
 
 def generate(o, symbsbase):
@@ -841,6 +841,6 @@ University of Informatics
 Link to the Github project:
     https://github.com/maxiikk/PasswordGenerator
 
-Last edit made at 10/4/2022 18:16
+Last edit made at 10/4/2022 23:04
 Version: 1.1
 """
