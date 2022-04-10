@@ -97,7 +97,7 @@ def setpassword():
         confirmpasslabel.set("Άλλη μια φορά:")
         setapass.geometry("530x100")
     blanklabel = Label(setapass, text = " ", bg='#bdbdbd').grid(row = 0)
-    warnlabel = Label(setapass, textvariable = warninglabel, bg='#bdbdbd').grid(row = 3, stick = W)
+    warnlabel = Label(setapass, textvariable = warninglabel, bg='#bdbdbd', fg = "red").grid(row = 3, stick = W)
     label = Label(setapass, text = setpasslabel.get(), bg='#bdbdbd', font=("Sans Serif", 10, "bold")).grid(row = 1, stick = W)
     label = Label(setapass, text = confirmpasslabel.get(), bg='#bdbdbd', font=("Sans Serif", 10, "bold")).grid(row = 2, stick = W)
     e.grid(row = 1, column = 1, stick = W)
