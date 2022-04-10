@@ -60,10 +60,32 @@ def setpassword():
     def complete():
         if len(e.get()) != 0 and len(e2.get()) != 0: #check if the password entry is empty
             if e.get() == e2.get():
+                wrongpass = 0
                 mypassword.set(e.get()) #get the password entry's contents
-                passwordentered.set(1) #to confirm later that the password has been entered
-                setpassopen.set(0) #confirm that the process is done and the window will be closed after this command
-                setapass.destroy()
+                if os.path.isfile("Encrypted Password Storage.txt"):
+                    file = open("Encrypted Password Storage.txt", "r")
+                    todecnextline = 0
+                    for line in file:
+                        if "Encrypted Password:" in line:
+                            todecnextline = 1
+                        else:
+                            if todecnextline == 1:
+                                try:
+                                    l = decrypt2(str(line), 0)
+                                    todecnextline = 0
+                                except:
+                                    wrongpass = 1
+                if wrongpass == 1:
+                    if curlang.get() == 0:
+                        warninglabel.set("Wrong Password!")
+                    elif curlang.get() == 1:
+                        warninglabel.set("Неправильный пароль!")
+                    elif curlang.get() == 2:
+                        warninglabel.set("Λάθος κωδικός!")
+                elif wrongpass == 0:
+                    passwordentered.set(1) #to confirm later that the password has been entered
+                    setpassopen.set(0) #confirm that the process is done and the window will be closed after this command
+                    setapass.destroy()
             else:
                 if curlang.get() == 0:
                     warninglabel.set("The two passwords are not equal!")
@@ -83,19 +105,19 @@ def setpassword():
         setpassbuttonlabel.set("Set password")
         setapass.title("Set A Password First!")
         confirmpasslabel.set("Confirm Password:")
-        setapass.geometry("500x100")
+        setapass.geometry("550x110")
     elif curlang.get() == 1:
         setpasslabel.set("Назначьте пароль:")
         setpassbuttonlabel.set("Назначить пароль")
         setapass.title("Назначьте Пароль Сперва!")
         confirmpasslabel.set("Введите еще раз:")
-        setapass.geometry("490x100")
+        setapass.geometry("560x110")
     elif curlang.get() == 2:
         setpasslabel.set("Βάλτε κωδικό:")
         setpassbuttonlabel.set("ΟΚ")
         setapass.title("Βάλτε Κωδικό Πρώτα!")
         confirmpasslabel.set("Άλλη μια φορά:")
-        setapass.geometry("530x100")
+        setapass.geometry("570x110")
     blanklabel = Label(setapass, text = " ", bg='#bdbdbd').grid(row = 0)
     warnlabel = Label(setapass, textvariable = warninglabel, bg='#bdbdbd', fg = "red").grid(row = 3, stick = W)
     label = Label(setapass, text = setpasslabel.get(), bg='#bdbdbd', font=("Sans Serif", 10, "bold")).grid(row = 1, stick = W)
@@ -819,6 +841,6 @@ University of Informatics
 Link to the Github project:
     https://github.com/maxiikk/PasswordGenerator
 
-Last edit made at 10/4/2022 17:45
+Last edit made at 10/4/2022 18:16
 Version: 1.1
 """
