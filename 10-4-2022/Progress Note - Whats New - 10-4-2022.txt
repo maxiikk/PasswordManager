@@ -1,0 +1,10 @@
+In this build (Date 10-4-2022, v1.1) we added the option to hide the decrypted passwords and made setting password much more easier and less possible to be messed up with, also, we fixed some bugs and made the UI better.
+
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
