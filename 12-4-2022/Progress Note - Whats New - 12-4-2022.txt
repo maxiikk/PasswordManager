@@ -1,0 +1,12 @@
+In this build (Date 12-4-2022, v1.2) we added the ability to change the currently used password within the program and did everything to prevent any issues with the process of changing the password! Also, for that purpose we added a new button to the saved passwords window and moved the save button to the side so the new button can go beneath the Text Box, now the save button is very close to the refresh button which also is more comfortable than before!
+You can change the currently used password from the saved passwords window.
+
+
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
