@@ -20,6 +20,8 @@ setpassopen = IntVar() #to check if the setpassword() is already active to avoid
 passwarningopen = IntVar() #to check if the setpasswarning() function is already active
 usingsimilarchars = IntVar()
 usingsimilarchars.set(1)
+usingambiguoussymbs = IntVar()
+usingambiguoussymbs.set(1)
 cipher = StringVar() #Variable for the cipher
 def setpasswarning():
     passerror = Toplevel(master) #defining a new window with the name passerror >>
@@ -226,6 +228,15 @@ def openpasses(): #function for opening the saved passwords and decrypting them
                     areyousure2()
                     e3.delete('1.0', "end")
                     e6.delete('1.0', "end")
+                    e4.delete('1.0', "end")
+                    e5.delete('1.0', "end")
+                    recentrating.set(0)
+                    if curlang.get() == 0:
+                        passstrength.set("Strength: \n" + str(recentrating.get()))
+                    elif curlang.get() == 1:
+                        passstrength.set("Прочность: \n" + str(recentrating.get()))
+                    elif curlang.get() == 2:
+                        passstrength.set("Αντοχή: \n" + str(recentrating.get()))
                     encpass.set("")
                     setapass.destroy() #closing window after successful password entry
                 else: #if the two password fields are not equal then show a warning in the correct language
@@ -499,6 +510,10 @@ def setenglish(): #localization to English
         extraopt.entryconfigure(0, label = "Include Similar Characters")
     elif usingsimilarchars.get() == 1:
         extraopt.entryconfigure(0, label = "Exclude Similar Characters")
+    if usingambiguoussymbs.get() == 0:
+        extraopt.entryconfigure(1, label = "Include Ambiguous Symbols")
+    elif usingambiguoussymbs.get() == 1:
+        extraopt.entryconfigure(1, label = "Exclude Ambiguous Symbols")
     aboutuslabel.set("About us")
     importantlabel.set("Important Note")
     viewsavedlabel.set("View Saved Passwords")
@@ -535,6 +550,10 @@ def setrussian(): #localization to Russian
         extraopt.entryconfigure(0, label = "Использовать Похожие Символы")
     elif usingsimilarchars.get() == 1:
         extraopt.entryconfigure(0, label = "Не Использовать Похожие Символы")
+    if usingambiguoussymbs.get() == 0:
+        extraopt.entryconfigure(1, label = "Использовать Двусмысленные Символы")
+    elif usingambiguoussymbs.get() == 1:
+        extraopt.entryconfigure(1, label = "Не Использовать Двусмысленные Символы")
     langlabel.set("Язык")
     savedpasslabel.set("Сохранненые Пароли")
     aboutuslabel.set("О нас")
@@ -565,6 +584,10 @@ def setgreek(): #localization to Greek
         extraopt.entryconfigure(0, label = "Χρήση Παρόμοιων Χαρακτήρων")
     elif usingsimilarchars.get() == 1:
         extraopt.entryconfigure(0, label = "Μη-Χρήση Παρόμοιων Χαρακτήρων")
+    if usingambiguoussymbs.get() == 0:
+        extraopt.entryconfigure(1, label = "Χρήση Διφορούμενων Συμβόλων")
+    elif usingambiguoussymbs.get() == 1:
+        extraopt.entryconfigure(1, label = "Μη-Χρήση Διφορούμενων Συμβόλων")
     lowercheck.set("Μικρά Γράμματα")
     about.entryconfigure(0, label = "Σημαντική Παρατήρηση")
     about.entryconfigure(1, label = "Ποιοί είμαστε")
@@ -597,6 +620,23 @@ def usesimilarchars():
             extraopt.entryconfigure(0, label = "Не Использовать Похожие Символы")
         elif curlang.get() == 2:
             extraopt.entryconfigure(0, label = "Μη-Χρήση Παρόμοιων Χαρακτήρων")
+def useambiguoussymbs():
+    if usingambiguoussymbs.get() == 1:
+        usingambiguoussymbs.set(0)
+        if curlang.get() == 0:
+            extraopt.entryconfigure(1, label = "Include Ambiguous Symbols")
+        elif curlang.get() == 1:
+            extraopt.entryconfigure(1, label = "Использовать Двусмысленные Символы")
+        elif curlang.get() == 2:
+            extraopt.entryconfigure(1, label = "Χρήση Διφορούμενων Συμβόλων")
+    elif usingambiguoussymbs.get() == 0:
+        usingambiguoussymbs.set(1)
+        if curlang.get() == 0:
+            extraopt.entryconfigure(1, label = "Exclude Ambiguous Symbols")
+        elif curlang.get() == 1:
+            extraopt.entryconfigure(1, label = "Не Использовать Двусмысленные Символы")
+        elif curlang.get() == 2:
+            extraopt.entryconfigure(1, label = "Μη-Χρήση Διφορούμενων Συμβόλων")
 aboutuscaslabel.set("About us")
 changepasswordlabel.set("Set Password")
 langlabel.set("Language")
@@ -613,6 +653,7 @@ savedpasses = Menu(menu, tearoff = 0)
 menu.add_cascade(label = "Saved Passwords", menu = savedpasses)
 menu.add_cascade(label = "Extra Generation Options", menu = extraopt)
 extraopt.add_command(label = "Exclude Similar Characters", command = usesimilarchars)
+extraopt.add_command(label = "Exclude Ambiguous Symbols", command = useambiguoussymbs)
 savedpasses.add_command(label=viewsavedlabel.get(), command = openpasses)
 about.add_command(label=importantlabel.get(), command = openimp)
 about.add_command(label=aboutuslabel.get(), command = openab)
@@ -771,7 +812,7 @@ def generate(o, symbsbase): #main function for generating passwords
 
 def gen(s, n, u, l): #initialization of the main function for generating passwords
     symbs = []
-    sym = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '-', '_', '+', '=', '?']
+    sym = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '-', '_', '+', '=', '?', '[', ']', '{', '}', '/', '\\', ";", ":", ".", "~", "`", "<", ">", ',']
     nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     symbslower = ['a', 'b' , 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     symbsupper = ['A', 'B' , 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -789,16 +830,42 @@ def gen(s, n, u, l): #initialization of the main function for generating passwor
             symbs.append(symbslower[i])
     
     if usingsimilarchars.get() == 0:
-        symbs.remove('0')
-        symbs.remove('o')
-        symbs.remove('O')
-        symbs.remove('l')
-        symbs.remove('L')
-        symbs.remove('i')
-        symbs.remove('1')
-        symbs.remove('j')
-        symbs.remove('I')
-        
+        if n == 1 and l == 1 and u == 1:
+            symbs.remove('0')
+            symbs.remove('o')
+            symbs.remove('O')
+            symbs.remove('l')
+            symbs.remove('L')
+            symbs.remove('i')
+            symbs.remove('1')
+            symbs.remove('j')
+            symbs.remove('I')
+        elif l == 1 and u == 1:
+            symbs.remove('o')
+            symbs.remove('O')
+            symbs.remove('l')
+            symbs.remove('L')
+            symbs.remove('i')
+            symbs.remove('j')
+            symbs.remove('I')
+    
+    if usingambiguoussymbs.get() == 0 and s == 1:
+        symbs.remove('[')
+        symbs.remove(']')
+        symbs.remove('(')
+        symbs.remove(')')
+        symbs.remove('{')
+        symbs.remove('}')
+        symbs.remove('<')
+        symbs.remove('>')
+        symbs.remove('`')
+        symbs.remove('.')
+        symbs.remove(';')
+        symbs.remove(':')
+        symbs.remove('/')
+        symbs.remove('\\')
+        symbs.remove('~')
+        symbs.remove(',')
     generate(int(e2.get()), symbs)
 
 def savetofile(passname, passtosave): #saving the generated passwords to the encrypted password storage file when the button "Save" is clicked
