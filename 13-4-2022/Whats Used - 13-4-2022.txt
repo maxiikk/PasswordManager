@@ -1,0 +1,24 @@
+
+
+	Whats Used To Make The Build
+			13-4-2022
+-----------------------------------------
+Programs used to edit the code:
+	Notepad++
+	Python IDLE 3.10
+	Sublime Text Editor
+Programs used to compile the code:
+	Python 3.10
+
+Needed modules for python:
+1.wheel
+2.pyperclip
+3.AES-Encryptor
+4.pycryptodome
+
+-----------
+inf2021221|
+inf2021198|
+inf2021119|
+-----------------------------------------
+		Date: 13-4-2022

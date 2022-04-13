@@ -1,0 +1,11 @@
+In this build (Date 13-4-2022, v1.2) we added a password change confirmation, an option to include/exclude similar characters and fixed bugs so this password manager is more reliable for everyday use.
+
+
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
