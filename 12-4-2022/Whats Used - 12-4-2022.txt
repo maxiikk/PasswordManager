@@ -14,6 +14,7 @@ Needed modules for python:
 1.wheel
 2.pyperclip
 3.AES-Encryptor
+4.Pycryptodome
 
 -----------
 inf2021221|
