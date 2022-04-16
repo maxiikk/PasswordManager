@@ -134,7 +134,7 @@ def setpassword(mode = 0):
     e2.config(show="*") #hide entered password >
     e.config(show="*") #>
     blanklabel = Label(setapass, text = "    ", bg='#bdbdbd').grid(row = 1, column = 2, stick = W) #>>>>
-    setpass = Button(setapass, text = setpassbuttonlabel.get(), command = complete, width = 15, bg='lightgrey', borderwidth = 5, font=("Serif", 11)).grid(row = 2, column = 3, stick = W) #"Set Password" button definition
+    setpass = Button(setapass, text = setpassbuttonlabel.get(), command = complete, width = 15, bg='lightgrey', borderwidth = 5, font=("Arial", 10, "bold")).grid(row = 2, column = 3, stick = W) #"Set Password" button definition
 
 
 def openpasses(): #function for opening the saved passwords and decrypting them
@@ -280,7 +280,7 @@ def openpasses(): #function for opening the saved passwords and decrypting them
         e2.config(show="*") #hide entered password >
         e.config(show="*") #>
         blanklabel = Label(setapass, text = "    ", bg='#bdbdbd').grid(row = 1, column = 2, stick = W) #>>>>
-        setpass = Button(setapass, text = setpassbuttonlabel.get(), command = areyousure2, width = 15, bg='lightgrey', borderwidth = 5, font=("Serif", 11)).grid(row = 2, column = 3, stick = W) #"Set Password" button definition
+        setpass = Button(setapass, text = setpassbuttonlabel.get(), command = areyousure2, width = 15, bg='lightgrey', borderwidth = 5, font=("Arial", 10, "bold")).grid(row = 2, column = 3, stick = W) #"Set Password" button definition
             
     def savepassesfile(): #function to save user-made changes to the saved passwords' text file in encrypted format
         if passwordentered.get() == 1: #execute if user has successfully entered a password so the entered passwords will be encrypted
@@ -409,19 +409,19 @@ def openpasses(): #function for opening the saved passwords and decrypting them
         refreshbuttonlabel.set("Refresh")
         savepassesbuttonlabel.set("   Save   ")
         savedpassespage.title("Saved Passwords")
-        passesl = Label(savedpassespage, text = "Saved Passwords:", bg='#bdbdbd').grid(row = 0, column = 0)
+        passesl = Label(savedpassespage, text = "Saved Passwords:", bg='#bdbdbd', font=("Arial", 10, "bold")).grid(row = 0, column = 0)
         changepassbuttonlabel.set("Change Encryption Password")
     elif curlang.get() == 1:
         refreshbuttonlabel.set("Перезагрузить")
         savepassesbuttonlabel.set("    Сохранить    ")
         savedpassespage.title("Сохраненные Пароли")
-        passesl = Label(savedpassespage, text = "Сохраненные Пароли:", bg='#bdbdbd').grid(row = 0, column = 0)
+        passesl = Label(savedpassespage, text = "Сохраненные Пароли:", bg='#bdbdbd', font=("Arial", 10, "bold")).grid(row = 0, column = 0)
         changepassbuttonlabel.set("Сменить Пароль Шифрования")
     elif curlang.get() == 2:
         refreshbuttonlabel.set("Επαναφόρτωση")
         savepassesbuttonlabel.set("   Αποθήκευση   ")
         savedpassespage.title("Αποθηκευμένοι Κωδικοί")
-        passesl = Label(savedpassespage, text = "Αποθηκευμένοι Κωδικοί:", bg='#bdbdbd').grid(row = 0, column = 0)
+        passesl = Label(savedpassespage, text = "Αποθηκευμένοι Κωδικοί:", bg='#bdbdbd', font=("Arial", 10, "bold")).grid(row = 0, column = 0)
         changepassbuttonlabel.set("Αλλαγή Κωδικού Κρυπτογράφησης")
     refreshbutton = Button(savedpassespage, textvariable = refreshbuttonlabel, bg='lightgrey', command = refreshpasses, borderwidth = 5, font=("Sans Serif", 9, "bold")).grid(row = 0, column = 1) #defining the refresh button
     savepassesbutton = Button(savedpassespage, textvariable = savepassesbuttonlabel, bg='lightgrey', command = areyousure, borderwidth = 5, font=("Sans Serif", 9, "bold")).grid(row = 1, column = 1) #defining the save button
@@ -521,7 +521,7 @@ def setenglish(): #localization to English
 def setrussian(): #localization to Russian
     curlang.set(1)
     master.title("Генератор Паролей")
-    master.geometry("660x270")
+    master.geometry("670x270")
     yourpasswordislabel.set("Пароль: ")
     passwordnamelabel.set('Название Пароля')
     passwordlengthlabel.set('Размер Пароля')
@@ -663,7 +663,7 @@ yourpasswordislabel = StringVar()
 yourpasswordislabel.set("Your Password is: ")
 l2 = Label(master, textvariable = yourpasswordislabel, bg='#bdbdbd').grid(row = 4, column = 0, stick = E)
 passstrength.set("Strength: \n0")
-l00 = Label(master, textvariable = passstrength, bg= '#bdbdbd').grid(row = 4, column = 5, stick = W)
+l00 = Label(master, textvariable = passstrength, bg= '#bdbdbd', font=("Arial", 10, "bold")).grid(row = 4, column = 5, stick = W)
 yourencpasswordlabel = StringVar()
 yourencpasswordlabel.set("Your Password in encrypted format:")
 l3 = Label(master, textvariable = yourencpasswordlabel, anchor = 'w', bg='#bdbdbd').grid(row = 5, column = 0, ipadx = 1, stick = E)
@@ -993,10 +993,10 @@ def clearencpass (): #function for clearing the encrypted-for-decryption passwor
 
 passwordnamelabel = StringVar()
 passwordnamelabel.set('Password Name')
-Label(master, textvariable = passwordnamelabel, bg='#bdbdbd').grid(row=0, ipadx = 1, stick = W)
+Label(master, textvariable = passwordnamelabel, bg='#bdbdbd', font=("Arial", 10, "bold")).grid(row=0, ipadx = 1, stick = W)
 passwordlengthlabel = StringVar()
 passwordlengthlabel.set('Length')
-Label(master, textvariable = passwordlengthlabel, bg='#bdbdbd').grid(row=1, ipadx = 1, stick = W)
+Label(master, textvariable = passwordlengthlabel, bg='#bdbdbd', font=("Arial", 10, "bold")).grid(row=1, ipadx = 1, stick = W)
 e1 = Entry(master, bg='lightgrey') #Entry for the password name
 e1.insert(0, "Test")
 e2 = Entry(master, bg='lightgrey') #Entry for the password length
@@ -1022,7 +1022,7 @@ b5 = Button(master , textvariable = copybutton, command = lambda: copy6(str(encp
 b3 = Button(master, textvariable = decryptbutton, command = lambda: decrypt2(e3.get("1.0","end"), 1), bg='lightgrey', borderwidth = 5).grid(row = 6, column = 3, ipadx = 1, stick = W)
 b4 = Button(master, textvariable = copybutton, command = lambda: copy2(str(e5.get("1.0","end"))), bg='lightgrey', borderwidth = 5).grid(row = 9, column = 3, ipadx = 1, stick = W)
 b6 = Button(master, textvariable = copybutton, command = lambda: copy4(str(e4.get("1.0","end"))), bg='lightgrey', borderwidth = 5).grid(row = 4, column = 3, ipadx = 1, stick = W)
-b1 = Button(master, textvariable = generatebutton, command = dothis, bg='lightgrey', borderwidth = 5, font=("Serif", 10, "bold")).grid(row=1, column=3, ipadx = 1, stick = W)
+b1 = Button(master, textvariable = generatebutton, command = dothis, bg='lightgreen', borderwidth = 5, font=("Arial", 10, "bold")).grid(row=1, column=3, ipadx = 1, stick = W)
 var1 = IntVar() #Symbols CheckBox Variable
 var2 = IntVar() #Numbers CheckBox Variable
 var3 = IntVar() #UpperCase Letters CheckBox Variable
@@ -1039,10 +1039,10 @@ symbolscheck.set("Symbols") #Setting the text to english version by default >>
 numberscheck.set("Numbers") #>>
 uppercheck.set("UpperCase Letters") #>>
 lowercheck.set("LowerCase Letters") #>>
-Checkbutton(master, textvariable =symbolscheck, variable=var1, anchor = 'w', bg='#bdbdbd').grid(row=3, column = 1, ipadx = 1, stick = W) #checkbuttons for the symbols that the user has to choose whether to include in the newly generated password >>>>
-Checkbutton(master, textvariable=numberscheck, variable=var2, anchor = 'w', bg='#bdbdbd').grid(row=3, column = 0, ipadx = 1, stick = W) #>>>>
-Checkbutton(master, textvariable=uppercheck, variable=var3, anchor = 'w', bg='#bdbdbd').grid(row=2, column = 0, ipadx = 1, stick = W) #>>>>
-Checkbutton(master, textvariable=lowercheck, variable=var4, anchor = 'w', bg='#bdbdbd').grid(row=2, column = 1, ipadx = 1, stick = W) #>>>>
+Checkbutton(master, textvariable =symbolscheck, variable=var1, anchor = 'w', bg='#bdbdbd', font=("Arial", 10, "bold")).grid(row=3, column = 1, ipadx = 1, stick = W) #checkbuttons for the symbols that the user has to choose whether to include in the newly generated password >>>>
+Checkbutton(master, textvariable=numberscheck, variable=var2, anchor = 'w', bg='#bdbdbd', font=("Arial", 10, "bold")).grid(row=3, column = 0, ipadx = 1, stick = W) #>>>>
+Checkbutton(master, textvariable=uppercheck, variable=var3, anchor = 'w', bg='#bdbdbd', font=("Arial", 10, "bold")).grid(row=2, column = 0, ipadx = 1, stick = W) #>>>>
+Checkbutton(master, textvariable=lowercheck, variable=var4, anchor = 'w', bg='#bdbdbd', font=("Arial", 10, "bold")).grid(row=2, column = 1, ipadx = 1, stick = W) #>>>>
 setpassword() #running the setpassword() function after everything is defined and works correctly
 mainloop()
 """
