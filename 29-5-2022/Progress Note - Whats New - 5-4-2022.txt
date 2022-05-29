@@ -1,0 +1,11 @@
+In this build (Date 29-5-2022) we made the program encrypted the names of the password too!
+Now, if you were using the v1.3 and want to migrate to this version, you will have to copy and paste the v1.3 DECRYPTED "Saved Passwords" Page to the v1.4 DECRYPTED "Saved Passwords" Page and press "Save".
+
+
+
+------------------
+By:			
+	inf2021221  
+	inf2021198
+	inf2021119    
+------------------
