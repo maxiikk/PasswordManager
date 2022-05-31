@@ -26,7 +26,7 @@ cipher = StringVar() #Variable for the cipher
 
 def encrypt(k):
     cipher = AES_Encryption(key=mypassword.get(), iv = 'dsfgsjklcvb45eso') #create the cipher for the encryption
-    enc = cipher.encrypt(k) #encrypt the password
+    enc = cipher.encrypt(k) #encrypt with the password
     enc = str(enc) #convert from bytes to string
     l = "" #temporary variable to contain the encrypted password for the '' to be removed
     o = 0 #temporary used to track the position in the string
