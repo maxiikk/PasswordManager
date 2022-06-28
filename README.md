@@ -6,4 +6,6 @@ This a simple and secure app that uses AES encryption to encrypt and decrypt you
   2. pyperclip
   3. pycryptodome
 
-Open your command prompt (not the python idle!) and type **pip install packagename** where package name is the name of each of the above libraries
+Open your command prompt (not the python idle!) and type **pip install packagename** where package name is the name of each of the above libraries (type the names exactly as shown above)
+
+If you have any questions or suggestions, ill be here to help
