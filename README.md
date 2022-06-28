@@ -26,6 +26,7 @@ Plans:
 
 
 Current state of the app:
+
 ![pythonw_NsJWZp0jkO](https://user-images.githubusercontent.com/85651296/176317071-14683008-b538-4902-aadc-a66931336dad.png)
 ![pythonw_LwL4gQZiAf](https://user-images.githubusercontent.com/85651296/176317073-da3c8a8b-4795-4b80-b82e-8496b07ec10a.png)
 
