@@ -1,5 +1,5 @@
 
-Welcome to our password generator, in development by inf2021198 &amp; inf2021221 &amp; inf2021119 for our university project
+Welcome to our password ~~generator~~ manager, in development by inf2021198 &amp; inf2021221 &amp; inf2021119 for our university project
 
 This a simple and secure app that uses AES encryption to encrypt and decrypt your passwords, it is fully offline and requires the following libraries to work (**if you run the python script and not the standalone version which has the .exe extension**):
   1. AES-Encryptor
