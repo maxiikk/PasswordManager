@@ -20,7 +20,7 @@ What can this app do?
   9. Get a rating for the generated password
 
 Plans:
-  1. Implement a "Trash" system
+  1. Implement a "Trash" system (im thinking about using vault versioning and finding the parts that have been deleted after making changes and saving the vault)
   2. Show statistics about how many passwords are saved in the vault and how many of them are weak
   3. Add an option to generate a passphrase from a dictionary
 
