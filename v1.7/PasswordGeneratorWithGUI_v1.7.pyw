@@ -334,18 +334,26 @@ def openpasses():
         savepassbuttonlabel = StringVar()
         savenamebuttonlabel = StringVar()
         copypassbuttonlabel = StringVar()
+        showpassbuttonlabel = StringVar()
+        hidepassbuttonlabel = StringVar()
         if curlang.get() == 0:
             savepassbuttonlabel.set("Save Pass")
             savenamebuttonlabel.set("Save Name")
             copypassbuttonlabel.set("Copy")
+            showpassbuttonlabel.set("Show")
+            hidepassbuttonlabel.set("Hide")
         elif curlang.get() == 1:
             savepassbuttonlabel.set("Сохранить Пар.")
             savenamebuttonlabel.set("Сохранить Имя")
             copypassbuttonlabel.set("Копировать")
+            showpassbuttonlabel.set("Показать")
+            hidepassbuttonlabel.set("Скрыть")
         elif curlang.get() == 2:
             savepassbuttonlabel.set("Αποθήκευση Κωδ.")
             savenamebuttonlabel.set("Αποθήκευση Ονόμ.")
             copypassbuttonlabel.set("Αντιγραφή")
+            showpassbuttonlabel.set("Εμφάνιση")
+            hidepassbuttonlabel.set("Κρύψιμο")
         if passwordentered.get() == 1:
             mainfile = open("Encrypted Password Storage.txt", "r+")
             lines = mainfile.readlines()
@@ -384,15 +392,25 @@ def openpasses():
                             elif todecnextlinepass == 1:
                                 passesamount+=1
                                 todecnextlinepass = 0
-                                temptext = Text(frame_buttons, height = 1, width = 20)
+                                temptext = Entry(frame_buttons, width = 27)
                                 temptext.insert(INSERT, str(l))
                                 temptext.grid(row = i+1, column = 1)
+                                temptext.config(show="*")
                                 def savepassinit(k, p):
-                                    savepass(k.get("1.0", "end"), p)
+                                    savepass(k.get(), p)
                                 def copypassinit(k):
-                                    copypass(k.get("1.0", "end"))
+                                    copypass(k.get())
+                                showpassvar = IntVar()
+                                def showpass(k, var):
+                                    if var.get() == 0:
+                                        k.config(show="")
+                                        var.set(1)
+                                    else:
+                                        k.config(show="*")
+                                        var.set(0)
                                 Button(frame_buttons, text = savepassbuttonlabel.get(), width = 15, command = lambda p = passesamount, k = temptext: savepassinit(k, p)).grid(row = i+1, column = 2)
                                 Button(frame_buttons, text = copypassbuttonlabel.get(), width = 15, command = lambda k = temptext: copypassinit(k)).grid(row = i+1, column = 3)
+                                showbutton = Button(frame_buttons, text = showpassbuttonlabel.get(), width = 15, command = lambda k = temptext, var = showpassvar: showpass(k, var)).grid(row = i+1, column = 4)
                                 i += 3
                         except: #show a decryption error in case of a failed decryption
                             failedwin()
