@@ -26,6 +26,7 @@ Plans:
 Current state of the app:
 
 ![pythonw_NsJWZp0jkO](https://user-images.githubusercontent.com/85651296/176317071-14683008-b538-4902-aadc-a66931336dad.png)
-![pythonw_eBRu25lByZ](https://user-images.githubusercontent.com/85651296/181287855-d6f893db-fb75-4027-8c6c-0b07168a2560.png)
+![PasswordGeneratorWithGUI_v1 8_uHBiMgYkLo](https://user-images.githubusercontent.com/85651296/181611776-3c7cd5d4-1914-4273-84fd-7904714d4fd8.png)
+
 
 If you have any questions or suggestions, ill be here to help
