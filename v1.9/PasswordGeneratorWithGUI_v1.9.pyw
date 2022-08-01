@@ -125,14 +125,15 @@ def setpasswarning():
     errlabel = Label(passerror, text = passerrorlabel.get(), bg='#bdbdbd', font=("Courier", 16, "bold")).grid(row = 1) #label for the warning
 def checkdec(filename = "Encrypted Password Storage.txt"):
     if passwordentered.get() != 1:
-        failedwin("No Password Yet")
+        failedwin("No Password Set Yet")
         return 0
     try:
         tempfile = open(filename, "r")
         lines = tempfile.readlines()
         tempfile.close()
     except:
-        failedwin("Cant Open Password Storage")
+        if not os.path.isfile(filename):
+            return 1
         return 0
     decrypted = 0
     todecnext = 0
@@ -359,7 +360,7 @@ def openpasses():
     passeswindow.title("Passwords")
     passeswindow.resizable(height = False, width = False)
     passeswindow.config(bg='#bdbdbd')
-    passeswindow.geometry(f'{770}x{605}+{int(xx+383)}+{int(yy-100)}')
+    passeswindow.geometry(f'{810}x{605}+{int(xx+383)}+{int(yy-100)}')
     def passesclose(): 
         passeslistopen.set(0) 
         passeswindow.destroy() 
@@ -374,7 +375,7 @@ def openpasses():
     firstframe = Frame(passeswindow)
     firstframe.config(bg='#bdbdbd')
     firstframe.grid(row = 1, column = 0)
-    canvas = Canvas(firstframe, bg='#bdbdbd', width = 610, height = 600)
+    canvas = Canvas(firstframe, bg='#bdbdbd', width = 630, height = 600)
     canvas.grid(row=0, column=0, sticky="news")
     scrollbar = Scrollbar(firstframe, orient='vertical', command=canvas.yview)
     scrollbar.grid(row=0, column=99, sticky = NS)
@@ -484,11 +485,21 @@ def openpasses():
             mainfile.close()
             del selectedpasswords[:]
             refreshpasses()
+    refreshpassesbuttonlabel = StringVar()
+    changepassbuttonlabel = StringVar()
+    deletepassesbuttonlabel = StringVar()
+    addpassbuttonlabel = StringVar()
     def refreshpasses():
+        if curlang.get() == 0:
+            passeswindow.title("Passwords")
+        elif curlang.get() == 1:
+            passeswindow.title("Пароли")
+        elif curlang.get() == 2:
+            passeswindow.title("Κωδικοί")
         firstframe = Frame(passeswindow)
         firstframe.config(bg='#bdbdbd')
         firstframe.grid(row = 1, column = 0)
-        canvas = Canvas(firstframe, bg='#bdbdbd', width = 610, height = 600)
+        canvas = Canvas(firstframe, bg='#bdbdbd', width = 630, height = 600)
         canvas.grid(row=0, column=0, sticky="news")
         scrollbar = Scrollbar(firstframe, orient='vertical', command=canvas.yview)
         scrollbar.grid(row=0, column=99, sticky = NS)
@@ -514,30 +525,43 @@ def openpasses():
             savenamebuttonlabel.set("Save Name")
             copypassbuttonlabel.set("Copy")
             showpassbuttonlabel.set("Show/Hide")
+            refreshpassesbuttonlabel.set("Refresh")
+            changepassbuttonlabel.set("Change Password")
+            deletepassesbuttonlabel.set("Delete Selected")
+            addpassbuttonlabel.set("Add Password")
         elif curlang.get() == 1:
             savepassbuttonlabel.set("Сохранить Пар.")
             savenamebuttonlabel.set("Сохранить Имя")
             copypassbuttonlabel.set("Копировать")
             showpassbuttonlabel.set("Показать/Скрыть")
+            refreshpassesbuttonlabel.set("Обновить")
+            changepassbuttonlabel.set("Сменить Пароль")
+            deletepassesbuttonlabel.set("Удалить Выбранные")
+            addpassbuttonlabel.set("Добавить Пароль")
         elif curlang.get() == 2:
             savepassbuttonlabel.set("Αποθήκευση Κωδ.")
             savenamebuttonlabel.set("Αποθήκευση Ονόμ.")
             copypassbuttonlabel.set("Αντιγραφή")
             showpassbuttonlabel.set("Εμφάνιση/Απόκριψη")
+            refreshpassesbuttonlabel.set("Επαναφόρτωση")
+            changepassbuttonlabel.set("Αλλαγή Κωδικού")
+            deletepassesbuttonlabel.set("Διαγραφή Επιλεγμένων")
+            addpassbuttonlabel.set("Προσθήκη Κωδικού")
         if passwordentered.get() == 1:
             try:
                 mainfile = open("Encrypted Password Storage.txt", "r+")
                 lines = mainfile.readlines()
                 mainfile.close()
-                templines = 0
-                for line in lines:
-                    templines += 1
-                if templines < 4:
-                    failedwin("No Passwords Yet")
-                    passesclose()
             except:
-                failedwin("No Passwords Yet")
-                passesclose()
+                mainfile = open("Encrypted Password Storage.txt", "a")
+                mainfile.close()
+                if curlang.get() == 0:
+                    Label(frame_buttons, text = " No Passwords Yet", bg='#bdbdbd', fg = 'red').grid(row = 0, column = 0, stick = W)
+                elif curlang.get() == 1:
+                    Label(frame_buttons, text = " Нет Паролей", bg='#bdbdbd', fg = 'red').grid(row = 0, column = 0, stick = W)
+                elif curlang.get() == 2:
+                    Label(frame_buttons, text = " Δεν Υπάρχουν Κωδικοί", bg='#bdbdbd', fg = 'red').grid(row = 0, column = 0, stick = W)
+                return
             for line in lines:
                 if "Encrypted Password:" in line: #detecting the start of the password definition and setting the variable to 1 to decrypt the next line
                     todecnextlinepass = 1
@@ -568,11 +592,11 @@ def openpasses():
                                 temptext.grid(row = i, column = 1)
                                 def savenameinit(k, p):
                                     savename(k.get("1.0", "end"), p)
-                                Button(frame_buttons, text = savenamebuttonlabel.get(), width = 15, command = lambda p = namesamount, k = temptext: savenameinit(k, p)).grid(row = i, column = 2)
+                                Button(frame_buttons, text = savenamebuttonlabel.get(), width = 15, borderwidth = 5, command = lambda p = namesamount, k = temptext: savenameinit(k, p)).grid(row = i, column = 2, padx = 2)
                             elif todecnextlinepass == 1:
                                 passesamount+=1 #also a password id
                                 todecnextlinepass = 0
-                                temptext = Entry(frame_buttons, width = 27)
+                                temptext = Entry(frame_buttons, width = 23, font = ("Sans Serif", 10, "bold"))
                                 temptext.insert(INSERT, str(l))
                                 temptext.grid(row = i+1, column = 1)
                                 temptext.config(show="*")
@@ -588,15 +612,22 @@ def openpasses():
                                     else:
                                         k.config(show="*")
                                         var.set(0)
-                                Button(frame_buttons, text = savepassbuttonlabel.get(), width = 15, command = lambda p = passesamount, k = temptext: savepassinit(k, p)).grid(row = i+1, column = 2)
-                                Button(frame_buttons, text = copypassbuttonlabel.get(), width = 10, command = lambda k = temptext: copypassinit(k)).grid(row = i+1, column = 3)
-                                showbutton = Button(frame_buttons, textvariable = showpassbuttonlabel, width = 15, command = lambda k = temptext, var = showpassvar: showpass(k, var)).grid(row = i+1, column = 4)
+                                Button(frame_buttons, text = savepassbuttonlabel.get(), width = 15, borderwidth = 5, command = lambda p = passesamount, k = temptext: savepassinit(k, p)).grid(row = i+1, column = 2, padx = 2)
+                                Button(frame_buttons, text = copypassbuttonlabel.get(), width = 10, borderwidth = 5, command = lambda k = temptext: copypassinit(k)).grid(row = i+1, column = 3)
+                                showbutton = Button(frame_buttons, textvariable = showpassbuttonlabel, width = 15, borderwidth = 5, command = lambda k = temptext, var = showpassvar: showpass(k, var)).grid(row = i+1, column = 4)
                                 tempvar = IntVar()
                                 Checkbutton(frame_buttons, text = "", variable = tempvar, command = lambda passid = namesamount: selectpassword(passid), bg='#bdbdbd').grid(row = i+1, column = 5)
                                 i += 3
                         except: #show a decryption error in case of a failed decryption
                             failedwin()
                             return
+            if namesamount == 0:
+                if curlang.get() == 0:
+                    Label(frame_buttons, text = " No Passwords Yet", bg='#bdbdbd', fg = 'red').grid(row = 0, column = 0, stick = W)
+                elif curlang.get() == 1:
+                    Label(frame_buttons, text = " Нет Паролей", bg='#bdbdbd', fg = 'red').grid(row = 0, column = 0, stick = W)
+                elif curlang.get() == 2:
+                    Label(frame_buttons, text = " Δεν Υπάρχουν Κωδικοί", bg='#bdbdbd', fg = 'red').grid(row = 0, column = 0, stick = W)
         else:
             if passwarningopen.get() != 1:
                 setpasswarning()
@@ -783,29 +814,10 @@ def openpasses():
         e2.bind("<Return>", lambda event: complete())
         setapass.focus_set()
         e.focus_set()
-    refreshpassesbuttonlabel = StringVar()
-    changepassbuttonlabel = StringVar()
-    deletepassesbuttonlabel = StringVar()
-    addpassbuttonlabel = StringVar()
-    if curlang.get() == 0:
-        refreshpassesbuttonlabel.set("Refresh")
-        changepassbuttonlabel.set("Change Password")
-        deletepassesbuttonlabel.set("Delete Selected")
-        addpassbuttonlabel.set("Add Password")
-    elif curlang.get() == 1:
-        refreshpassesbuttonlabel.set("Обновить")
-        changepassbuttonlabel.set("Сменить Пароль")
-        deletepassesbuttonlabel.set("Удалить Выбранные")
-        addpassbuttonlabel.set("Добавить Пароль")
-    elif curlang.get() == 2:
-        refreshpassesbuttonlabel.set("Επαναφόρτωση")
-        changepassbuttonlabel.set("Αλλαγή Κωδικού")
-        deletepassesbuttonlabel.set("Διαγραφή Επιλεγμένων")
-        addpassbuttonlabel.set("Προσθήκη Κωδικού")
-    refreshpassesbutton = Button(secframe, text = refreshpassesbuttonlabel.get(), width = 20, command = refreshpasses).grid(row = 0, column = 0)
-    changepassbutton = Button(secframe, text = changepassbuttonlabel.get(), width = 20, command = lambda: changepassword() if not(changepasswindowopen.get()) and passwordentered.get() else setpasswarning() if not(passwarningopen.get()) and not(passwordentered.get()) else print("Already Open")).grid(row = 1, column = 0)
-    deleteselectedpasswords = Button(secframe, text = deletepassesbuttonlabel.get(), width = 20, command = deletepasswords).grid(row = 2, column = 0)
-    addpassbutton = Button(secframe, text = addpassbuttonlabel.get(), width = 20, command = lambda: addpassword(passeswindow, refreshpasses) if not(addpassopen.get()) else failedwin("Already Open")).grid(row = 3, column = 0)
+    refreshpassesbutton = Button(secframe, textvariable = refreshpassesbuttonlabel, width = 20, borderwidth = 5, command = refreshpasses).grid(row = 0, column = 0, padx = 2, pady = 2)
+    changepassbutton = Button(secframe, textvariable = changepassbuttonlabel, width = 20, borderwidth = 5, command = lambda: changepassword() if not(changepasswindowopen.get()) and passwordentered.get() else setpasswarning() if not(passwarningopen.get()) and not(passwordentered.get()) else print("Already Open")).grid(row = 1, column = 0)
+    deleteselectedpasswords = Button(secframe, textvariable = deletepassesbuttonlabel, width = 20, command = deletepasswords, borderwidth = 5).grid(row = 2, column = 0)
+    addpassbutton = Button(secframe, textvariable = addpassbuttonlabel, width = 20, borderwidth = 5, command = lambda: addpassword(passeswindow, refreshpasses) if not(addpassopen.get()) else failedwin("Already Open")).grid(row = 3, column = 0)
 
 
 def openimp():
@@ -1309,55 +1321,44 @@ def dothis(): #checking if all the requirements are met before running the initi
         b += 1
     if var4.get() == 1:
         b += 1
-    if b != 0 and e2.get() != "0" and passwordentered.get() == 1:
-        e4.delete('1.0', "end")
-        e6.delete('1.0', "end")
-        gen(var1.get(), var2.get(), var3.get(), var4.get())
-    if b == 0 and e2.get() == "0":
-        selerror3 = Toplevel(master)
-        selerror3.config(bg='#bdbdbd')
+    if b != 0 and passwordentered.get() == 1:
+        correct = 0
+        length = 0
+        if len(e1.get()) == 0:
+            failedwin("No Name")
+            return
+        try:
+            if e2.get().strip() == "":
+                failedwin("No Length")
+                return
+            length = int(e2.get())
+            if length > 999 and length > 0:
+                failedwin("Too Big Length")
+                return
+            elif length > 0:
+                correct = 1
+            elif length == 0:
+                failedwin("Length is 0")
+                return
+            else:
+                failedwin("Length is below 0")
+                return
+        except:
+            failedwin("Length is not a number!")
+            return
+        if correct == 1:
+            e4.delete('1.0', "end")
+            e6.delete('1.0', "end")
+            gen(var1.get(), var2.get(), var3.get(), var4.get())
+        else:
+            return
+    elif b == 0:
         if curlang.get() == 0:
-            selerror3.title("Selection And Length Error")
-            labelwarning = Label(selerror3, text = "Select at least one thing to include in your password and set a proper length!", font=("Courier", 14, "bold"), bg='#bdbdbd').grid(row = 0, column = 0)
+            failedwin("Select at least one thing to include in your password!")
         elif curlang.get() == 1:
-            selerror3.title("Недопустимый Размер и Выбранные Символы")
-            labelwarning = Label(selerror3, text = "Выберите хотя бы что-нибудь из символов и назначьте размер пароля больше 0!", font=("Courier", 14, "bold"), bg='#bdbdbd').grid(row = 0, column = 0)
+            failedwin("Выберите хотя бы один из символов для пароля!")
         elif curlang.get() == 2:
-            selerror3.title("Λάθος μέγεθος και επιλόγη συμβόλων")
-            labelwarning = Label(selerror3, text = "Επιλεξτε τουλάχιστον μια από τις επιλογές συμβόλων και καθορίστε μέγεθος μεγαλύτερο του μηδενός!", font=("Courier", 14, "bold"), bg='#bdbdbd').grid(row = 0, column = 0)
-    else:
-        if b == 0:
-            if curlang.get() == 0:
-                selerror1 = Toplevel(master)
-                selerror1.config(bg='#bdbdbd')
-                selerror1.title("Selection Error")
-                labelwarning = Label(selerror1, text = "Select at least one thing to include in your password!", font=("Courier", 14, "bold"), bg='#bdbdbd').grid(row = 0, column = 0)
-            elif curlang.get() == 1:
-                selerror1 = Toplevel(master)
-                selerror1.config(bg='#bdbdbd')
-                selerror1.title("Недопустимое Количество Выбранных Символов")
-                labelwarning = Label(selerror1, text = "Выберите хотя бы один из символов для пароля!", font=("Courier", 14, "bold"), bg='#bdbdbd').grid(row = 0, column = 0)
-            elif curlang.get() == 2:
-                selerror1 = Toplevel(master)
-                selerror1.config(bg='#bdbdbd')
-                selerror1.title("Μη επαρκής αριθμός επιλογών συμβόλων")
-                labelwarning = Label(selerror1, text = "Επιλέξτε τουλάχιστον ένα από τα σύμβολα για τον κωδικό σας!", font=("Courier", 14, "bold"), bg='#bdbdbd').grid(row = 0, column = 0)
-        elif e2.get() == "0":
-            if curlang.get() == 0:
-                selerror2 = Toplevel(master)
-                selerror2.config(bg='#bdbdbd')
-                selerror2.title("Length Error")
-                labelwarning = Label(selerror2, text = "Length cant be 0!", font=("Courier", 14, "bold"), bg='#bdbdbd').grid(row = 0, column = 0)
-            elif curlang.get() == 1:
-                selerror2 = Toplevel(master)
-                selerror2.config(bg='#bdbdbd')
-                selerror2.title("Недопустимый Размер Пароля")
-                labelwarning = Label(selerror2, text = "Размер пароля не может быть 0!", font=("Courier", 14, "bold"), bg='#bdbdbd').grid(row = 0, column = 0)
-            elif curlang.get() == 2:
-                selerror2 = Toplevel(master)
-                selerror2.config(bg='#bdbdbd')
-                selerror2.title("Σφάλμα Μεγέθους")
-                labelwarning = Label(selerror2, text = "Το μέγεθος δεν μπορεί να είναι 0!", font=("Courier", 14, "bold"), bg='#bdbdbd').grid(row = 0, column = 0)
+            failedwin("Επιλέξτε τουλάχιστον ένα από τα σύμβολα για τον κωδικό σας!")
     if passwordentered.get() != 1 and setpassopen.get() != 1:
         if passwarningopen.get() == 0:
             setpasswarning()
