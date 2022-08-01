@@ -545,12 +545,16 @@ def openpasses():
     addpassbuttonlabel = StringVar()
     showallpassesbuttonlabel = StringVar()
     showallpassesvar = IntVar()
+    clearstoragebuttonlabel = StringVar()
     if curlang.get() == 0:
         showallpassesbuttonlabel.set("Show All Passwords")
+        clearstoragebuttonlabel.set("Clear All Passwords")
     elif curlang.get() == 1:
         showallpassesbuttonlabel.set("Показать Все Пароли")
+        clearstoragebuttonlabel.set("Стереть Все Пароли")
     elif curlang.get() == 2:
         showallpassesbuttonlabel.set("Εμφάνιση Όλων\nΤων Κωδικών")
+        clearstoragebuttonlabel.set("Καθαρισμός Όλων\nΤων Κωδικών")
     def refreshpasses():
         if curlang.get() == 0:
             passeswindow.title("Passwords")
@@ -594,6 +598,7 @@ def openpasses():
             changepassbuttonlabel.set("Change Password")
             deletepassesbuttonlabel.set("Delete Selected")
             addpassbuttonlabel.set("Add Password")
+            clearstoragebuttonlabel.set("Clear All Passwords")
         elif curlang.get() == 1:
             savepassbuttonlabel.set("Сохранить Пар.")
             savenamebuttonlabel.set("Сохранить Имя")
@@ -603,6 +608,7 @@ def openpasses():
             changepassbuttonlabel.set("Сменить Пароль")
             deletepassesbuttonlabel.set("Удалить Выбранные")
             addpassbuttonlabel.set("Добавить Пароль")
+            clearstoragebuttonlabel.set("Стереть Все Пароли")
         elif curlang.get() == 2:
             savepassbuttonlabel.set("Αποθήκευση Κωδ.")
             savenamebuttonlabel.set("Αποθήκευση Ονόμ.")
@@ -612,6 +618,22 @@ def openpasses():
             changepassbuttonlabel.set("Αλλαγή Κωδικού")
             deletepassesbuttonlabel.set("Διαγραφή Επιλεγμένων")
             addpassbuttonlabel.set("Προσθήκη Κωδικού")
+            clearstoragebuttonlabel.set("Καθαρισμός Όλων\nΤων Κωδικών")
+        if showallpassesvar.get() == 0:
+            if curlang.get() == 0:
+                showallpassesbuttonlabel.set("Show All Passwords")
+            elif curlang.get() == 1:
+                showallpassesbuttonlabel.set("Показать Все Пароли")
+            elif curlang.get() == 2:
+                showallpassesbuttonlabel.set("Εμφάνιση Όλων\nΤων Κωδικών")
+        else:
+            if curlang.get() == 0:
+                showallpassesbuttonlabel.set("Hide All Passwords")
+            elif curlang.get() == 1:
+                showallpassesbuttonlabel.set("Скрыть Все Пароли")
+            elif curlang.get() == 2:
+                showallpassesbuttonlabel.set("Απόκριψη Όλων\nΤων Κωδικών")
+            
         if passwordentered.get() == 1:
             try:
                 mainfile = open("Encrypted Password Storage.txt", "r+")
@@ -671,6 +693,7 @@ def openpasses():
                                 def copypassinit(k):
                                     copypass(k.get())
                                 showpassvar = IntVar()
+                                showpassvar.set(showallpassesvar.get())
                                 def showpass(k, var):
                                     if var.get() == 0:
                                         k.config(show="")
@@ -698,36 +721,6 @@ def openpasses():
             if passwarningopen.get() != 1:
                 setpasswarning()
     refreshpasses()
-    
-    def areyousure(): #function to confirm user's actions
-        areyousure = Toplevel(master)
-        areyousure.config(bg='#bdbdbd')
-        areyousure.resizable(width=False, height=False)
-        label = Label(areyousure, text = "   ", bg='#bdbdbd').grid(row = 0, column = 0, stick = W)
-        label = Label(areyousure, text = "   ", bg='#bdbdbd').grid(row = 1, column = 0, stick = W)
-        yesbuttonlabel = StringVar()
-        nobuttonlabel = StringVar()
-        def finish():
-            savepassesfile()
-            areyousure.destroy()
-        if curlang.get() == 0: #localization of the shown labels and buttons
-            areyousure.title("Are you sure?")
-            label = Label(areyousure, text = "Are you sure that you want to save the file?", bg='#bdbdbd').grid(row = 0, column = 1, stick = W)
-            yesbuttonlabel.set("Yes")
-            nobuttonlabel.set("NO")
-        elif curlang.get() == 1: #localization of the shown labels and buttons
-            areyousure.title("Вы уверены?")
-            label = Label(areyousure, text = "Вы уверены что хотите сохранить файл?", bg='#bdbdbd').grid(row = 0, column = 1, stick = W)
-            yesbuttonlabel.set("Да")
-            nobuttonlabel.set("НЕТ")
-        elif curlang.get() == 2: #localization of the shown labels and buttons
-            areyousure.title("Είστε σίγουροι?")
-            label = Label(areyousure, text = "Είστε σίγουροι ότι θέλετε να αποθηκεύσετε το αρχείο?", bg='#bdbdbd').grid(row = 0, column = 1, stick = W)
-            yesbuttonlabel.set("Ναι")
-            nobuttonlabel.set("ΟΧΙ")
-        yes = Button(areyousure, text = yesbuttonlabel.get(), command = finish, width = 15, bg='lightgrey', borderwidth = 5).grid(row = 2, column = 2, stick = W) #defining the "Yes" button and it's properties and location
-        no = Button(areyousure, text = nobuttonlabel.get(), command = areyousure.destroy, width = 15, bg='lightgrey', borderwidth = 5).grid(row = 2, column = 0, stick = W) #defining the "No" button and it's properties and location
-    
     def changepassword():
         refreshpasses()
         setapass = Toplevel(master) #Creating new window with the name setapass >>
@@ -903,6 +896,7 @@ def openpasses():
     deleteselectedpasswords = Button(secframe, textvariable = deletepassesbuttonlabel, width = 20, command = deletepasswords, borderwidth = 5).grid(row = 2, column = 0)
     addpassbutton = Button(secframe, textvariable = addpassbuttonlabel, width = 20, borderwidth = 5, command = lambda: addpassword(passeswindow, refreshpasses) if not(addpassopen.get()) else failedwin("Already Open")).grid(row = 3, column = 0)
     showallpassesbutton = Button(secframe, textvariable = showallpassesbuttonlabel, width = 20, command = showallpasses, borderwidth = 5).grid(row = 4, column = 0)
+    clearstoragebutton = Button(secframe, textvariable = clearstoragebuttonlabel, width = 20, command = lambda: areyousure(2) if not(areyousureopen.get()) else print("Already Open"), borderwidth = 5).grid(row = 5, column = 0)
 
 
 def openimp():
