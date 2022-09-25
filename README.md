@@ -27,6 +27,3 @@ Current state of the app:
 
 ![pythonw_MRQIMFojyR](https://user-images.githubusercontent.com/85651296/192152795-88982530-a328-486d-80a8-ba793b009a2f.jpg)
 ![pythonw_qLS6a3Mudb](https://user-images.githubusercontent.com/85651296/192152799-8de4ca1b-f7d0-4277-9c64-1cc3ca76daac.jpg)
-
-
-If you have any questions or suggestions, ill be here to help
